@@ -33,28 +33,18 @@ public class PerAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String authorizationHeader = request.getHeader("Authorization");
 
-        System.out.println(authorizationHeader);
-
         if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
         }
 
-
         String jwt = authorizationHeader.substring(7);
-
-        System.out.println(jwt);
-        System.out.println(tokenValidator.validateToken(jwt));
-
         if (!tokenValidator.validateToken(jwt)) {
             filterChain.doFilter(request, response);
             return;
         }
 
         String username = claimsService.extractUsername(jwt);
-
-
-        System.out.println(username);
         UserDetails userDetails = userMapping.map(userService.getUserByUsername(username));
 
         if (userDetails == null) {

@@ -7,6 +7,8 @@ import lombok.NonNull;
 @Data
 @AllArgsConstructor
 public class AuthenticationRequest {
+    @NonNull
     private final String username;
+    @NonNull
     private final String password;
 }

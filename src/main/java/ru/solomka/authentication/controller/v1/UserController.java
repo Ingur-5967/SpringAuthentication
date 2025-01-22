@@ -28,7 +28,7 @@ public class UserController {
     @GetMapping(value = "/me")
     public ResponseEntity<User> getMyProfile(@RequestParam("id") Long userId) {
         GetUserByUserIdQuery userByIdQuery = new GetUserByUserIdQuery(userId);
-        UserEntity userEntityById = mediatr.dispach(userByIdQuery, UserEntity.class);
+        UserEntity userEntityById = mediatr.dispatch(userByIdQuery, UserEntity.class);
         return ResponseEntity.ok(userMapping.map(userEntityById));
     }
 }

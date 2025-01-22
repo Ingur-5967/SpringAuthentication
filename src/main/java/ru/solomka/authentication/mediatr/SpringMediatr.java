@@ -13,7 +13,7 @@ public class SpringMediatr implements Mediatr {
 
     @Override
     @SuppressWarnings("unchecked")
-    public <O, R> R dispach(O query, Class<R> returnedObjectClass) {
+    public <O, R> R dispatch(O query, Class<R> returnedObjectClass) {
         CommandHandler<O, R> handler =
                 (CommandHandler<O, R>) commandService.getCommandHandlerByArgumentAndResponseTypes(query.getClass(), returnedObjectClass);
 

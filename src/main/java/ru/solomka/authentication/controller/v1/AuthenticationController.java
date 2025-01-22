@@ -35,7 +35,7 @@ public class AuthenticationController {
                 registrationRequest.getPassword()
         );
 
-        String createdUserToken = mediatr.dispach(createUserCommand, String.class);
+        String createdUserToken = mediatr.dispatch(createUserCommand, String.class);
 
         return ResponseEntity.ok(new TokenResponse(createdUserToken));
     }
